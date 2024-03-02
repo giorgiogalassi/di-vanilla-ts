@@ -4,8 +4,14 @@ import { ElementHandler } from './element.ts';
 import { Container } from 'inversify';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
+    <h2>Counter without IoC</h2>
     <div class="card">
       <button id="counter" type="button"></button>
+    </div>
+    
+    <h2>Counter with IoC</h2>
+    <div class="card">
+      <button id="counterIoC" type="button"></button>
     </div>
 `;
 
@@ -18,10 +24,9 @@ counter.setUpCounter();
 // DI with IoC using inversify
 const container = new Container();
 
-container.bind(Counter).toSelf();
-container.bind(ElementHandler).toSelf();
+container.bind<Counter>(Counter).toSelf();
+container.bind<ElementHandler>(ElementHandler).toConstantValue(new ElementHandler('#counterIoC'));
 
-const elementHandlerIoC = container.get(ElementHandler);
 const counterIoC = container.get(Counter);
 
 counterIoC.setUpCounter();

@@ -13,6 +13,7 @@
     "vite": "^5.1.4"
   },
   "dependencies": {
-    "inversify": "^6.0.2"
+    "inversify": "^6.0.2",
+    "reflect-metadata": "^0.2.1"
   }
 }

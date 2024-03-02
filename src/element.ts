@@ -1,8 +1,15 @@
+import "reflect-metadata";
+
+import { injectable } from "inversify";
+
+@injectable()
 export class ElementHandler {
   private _element: HTMLElement | null = null;
+  private _id: string;
 
   constructor(id: string) {
-    this.getElementById(id);
+    this._id = id;
+    this.getElementById(this._id);
   }
 
   setInnerHtml(value: string) {

@@ -1,10 +1,16 @@
+import "reflect-metadata";
+
+import { inject, injectable } from 'inversify';
 import { ElementHandler } from './element';
 
+import TYPES from './types';
+
+@injectable()
 export class Counter {
   private _elementHandler: ElementHandler;
   private _counter = 0;
 
-  constructor(element: ElementHandler) {
+  constructor(@inject(ElementHandler) element: ElementHandler) {
     this._elementHandler = element;
   }
 
